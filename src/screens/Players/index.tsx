@@ -27,7 +27,7 @@ type RouteParams = {
 }
 
 export function Players() {
-    
+
     const [isLoading, setIsLoading] = useState(true);
     const [newPlayerName, setNewPlayerName] = useState(''); //armazena o nome digitado
     const [team, setTeam] = useState('Time A') //armazena o time
@@ -72,10 +72,11 @@ export function Players() {
             setIsLoading(true);
             const playersByTeam = await playersGetByGroupAndTeam(group, team);
             setPlayers(playersByTeam)
-            setIsLoading(false);
         } catch (error) {
             console.log(error)
             Alert.alert('Pessoas', 'Não foi possível carregar as pessoas do time selecionado.')
+        } finally {
+            setIsLoading(false);
         }
     }
 
